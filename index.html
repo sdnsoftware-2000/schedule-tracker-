@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyDay — Your Day, On Track</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">M</div>
+                <div>
+                    <h1>MyDay</h1>
+                    <span>Your day, on track.</span>
+                </div>
+            </div>
+
+            <div class="top-actions">
+                <div class="streak">
+                    <span>🔥</span>
+                    <strong id="streakCount">0</strong>
+                    <small>day streak</small>
+                </div>
+
+                <button class="icon-btn" id="calendarBtn" type="button">▦</button>
+                <button class="icon-btn" id="settingsBtn" type="button">⚙</button>
+            </div>
+        </header>
+
+        <main>
+
+            <section class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow">TODAY'S MISSION</p>
+                    <h2 id="greeting">Make today count.</h2>
+                    <p id="motivation">Small wins become big progress.</p>
+
+                    <div class="hero-actions">
+                        <button class="primary-btn" id="todayBtn" type="button">
+                            Back to Today <span>→</span>
+                        </button>
+
+                        <button class="ghost-btn" id="addTopBtn" type="button">
+                            + Add Activity
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-progress">
+                    <div class="progress-ring">
+                        <svg viewBox="0 0 120 120">
+                            <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+                            <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="50"></circle>
+                        </svg>
+
+                        <div class="ring-text">
+                            <strong id="progressPercent">0%</strong>
+                            <span>done</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-message">
+                        <strong id="progressLabel">Let's get started</strong>
+                        <span id="progressSub">Your day is waiting.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="date-row">
+                <div>
+                    <p class="section-label">YOUR SCHEDULE</p>
+                    <h3 id="selectedDateText">Today</h3>
+                </div>
+
+                <div class="date-info" id="dateInfo"></div>
+            </section>
+
+            <section class="dashboard-grid">
+
+                <div class="main-column">
+
+                    <div class="schedule-head">
+                        <div>
+                            <h3>Today's flow</h3>
+                            <p>Stay focused. Finish one thing at a time.</p>
+                        </div>
+
+                        <div class="task-count">
+                            <strong id="completedCount">0</strong>/<span id="totalCount">0</span>
+                        </div>
+                    </div>
+
+                    <div id="schedule" class="schedule"></div>
+
+                    <button class="add-activity" id="addActivityBtn" type="button">
+                        <span>+</span>
+                        <div>
+                            <strong>Add something to your day</strong>
+                            <small>Build a schedule that works for you</small>
+                        </div>
+                    </button>
+
+                </div>
+
+                <aside class="side-column">
+
+                    <div class="side-card summary-card">
+                        <div class="card-heading">
+                            <div>
+                                <span class="mini-label">DAY SCORE</span>
+                                <h3 id="summaryPercent">0%</h3>
+                            </div>
+
+                            <div class="score-icon">✦</div>
+                        </div>
+
+                        <div class="score-bar">
+                            <span id="scoreBar"></span>
+                        </div>
+
+                        <div class="score-stats">
+                            <div>
+                                <strong id="summaryDone">0</strong>
+                                <span>completed</span>
+                            </div>
+
+                            <div>
+                                <strong id="summaryRemaining">0</strong>
+                                <span>remaining</span>
+                            </div>
+
+                            <div>
+                                <strong id="summaryMinutes">0m</strong>
+                                <span>planned</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="side-card momentum-card">
+                        <span class="mini-label">MOMENTUM</span>
+                        <h3 id="momentumTitle">Start your first win.</h3>
+                        <p id="momentumText">
+                            Complete a task and build your momentum.
+                        </p>
+
+                        <div class="momentum-line">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="side-card focus-card">
+                        <span class="mini-label">FOCUS AREAS</span>
+
+                        <div class="focus-list">
+                            <div>
+                                <span>💻</span>
+                                <strong id="softwareTime">0m</strong>
+                                <small>Software</small>
+                            </div>
+
+                            <div>
+                                <span>📚</span>
+                                <strong id="studyTime">0m</strong>
+                                <small>Study</small>
+                            </div>
+
+                            <div>
+                                <span>🏃</span>
+                                <strong id="exerciseTime">0m</strong>
+                                <small>Exercise</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+            </section>
+
+            <section class="calendar-section" id="calendarSection">
+
+                <div class="calendar-header">
+                    <div>
+                        <span class="mini-label">YOUR PROGRESS</span>
+                        <h3>Calendar</h3>
+                    </div>
+
+                    <div class="calendar-nav">
+                        <button id="prevMonth" type="button">‹</button>
+                        <strong id="calendarMonth"></strong>
+                        <button id="nextMonth" type="button">›</button>
+                    </div>
+                </div>
+
+                <div id="calendarGrid" class="calendar-grid"></div>
+
+            </section>
+
+            <section class="last-check" id="lastCheck">
+                <div class="last-check-icon">✓</div>
+
+                <div>
+                    <span class="mini-label">FINAL CHECK</span>
+                    <h3>Finish strong.</h3>
+                    <p id="lastCheckText"></p>
+                </div>
+
+                <div id="lastCheckTasks"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Activity Modal -->
+    <div class="modal-overlay" id="activityModal">
+        <div class="modal">
+
+            <button class="modal-close" type="button" data-close="activityModal">×</button>
+
+            <span class="mini-label">SCHEDULE</span>
+            <h2 id="modalTitle">Add Activity</h2>
+
+            <form id="activityForm">
+
+                <input type="hidden" id="activityId">
+
+                <label>
+                    Activity name
+                    <input
+                        type="text"
+                        id="activityName"
+                        placeholder="e.g. Study DSA"
+                        required
+                    >
+                </label>
+
+                <div class="form-row">
+                    <label>
+                        Start
+                        <input type="time" id="activityStart" required>
+                    </label>
+
+                    <label>
+                        End
+                        <input type="time" id="activityEnd">
+                    </label>
+                </div>
+
+                <label>
+                    Icon
+                    <div class="icon-picker" id="iconPicker"></div>
+                </label>
+
+                <label>
+                    Repeat
+                    <select id="activityRepeat">
+                        <option value="daily">Every day</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekends">Weekends</option>
+                        <option value="none">One day</option>
+                    </select>
+                </label>
+
+                <div class="modal-actions">
+                    <button
+                        type="button"
+                        class="danger-btn hidden"
+                        id="deleteActivityBtn"
+                    >
+                        Delete
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Save Activity
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+
+            <button class="modal-close" type="button" data-close="settingsModal">×</button>
+
+            <span class="mini-label">SETTINGS</span>
+            <h2>MyDay Settings</h2>
+
+            <p class="modal-desc">
+                Your schedule is stored locally in this browser.
+            </p>
+
+            <div class="settings-item">
+                <div>
+                    <strong>Reset schedule</strong>
+                    <span>Restore the original MyDay schedule.</span>
+                </div>
+
+                <button class="danger-btn" id="resetBtn" type="button">
+                    Reset
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
